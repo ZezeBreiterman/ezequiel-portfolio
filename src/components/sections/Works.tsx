@@ -1,23 +1,23 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { projects, categories, type Category } from '@/data/projects';
+import { projects, disciplines, type Discipline } from '@/data/projects';
 import TiltCard from '@/components/ui/TiltCard';
 import ScrambleText from '@/components/ui/ScrambleText';
 import styles from './Works.module.css';
 
+// Short blurb shown under the active tab so recruiters know what they're looking at.
+const disciplineMeta: Record<Discipline, string> = {
+  Developer: 'Web apps, 3D / WebGL experiences & creative coding.',
+  Designer: 'Motion graphics, 3D animation & visual design.',
+};
+
 export default function Works() {
-  const [activeFilter, setActiveFilter] = useState<Category>('All');
+  const [activeDiscipline, setActiveDiscipline] = useState<Discipline>('Developer');
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Robust filtering logic
-  const filtered =
-    activeFilter === 'All'
-      ? projects
-      : projects.filter(
-          (p) =>
-            p.category === activeFilter || p.tags.includes(activeFilter as string)
-        );
+  // Two clear audiences: Developer vs Designer work.
+  const filtered = projects.filter((p) => p.discipline === activeDiscipline);
 
   // Fix: Re-run IntersectionObserver whenever the filter changes
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function Works() {
     }
 
     return () => observer.disconnect();
-  }, [activeFilter, filtered.length]); // Depend on filter and count
+  }, [activeDiscipline, filtered.length]); // Re-run when the active discipline changes
 
   return (
     <section ref={sectionRef} className={`${styles.works} section`} id="work">
@@ -65,27 +65,36 @@ export default function Works() {
           </h2>
         </div>
 
-        {/* Filters */}
-        <div className={`${styles.filters} ${styles.animate}`}>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`${styles.filterBtn} ${
-                activeFilter === cat ? styles.filterActive : ''
-              }`}
-              onClick={() => setActiveFilter(cat)}
-              data-cursor="hover"
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Discipline toggle — let recruiters jump straight to what they need */}
+        <div className={`${styles.toggleWrap} ${styles.animate}`}>
+          <div className={styles.toggle} role="tablist" aria-label="Filter work by discipline">
+            {disciplines.map((d) => {
+              const count = projects.filter((p) => p.discipline === d).length;
+              return (
+                <button
+                  key={d}
+                  role="tab"
+                  aria-selected={activeDiscipline === d}
+                  className={`${styles.toggleBtn} ${
+                    activeDiscipline === d ? styles.toggleActive : ''
+                  }`}
+                  onClick={() => setActiveDiscipline(d)}
+                  data-cursor="hover"
+                >
+                  {d}
+                  <span className={styles.toggleCount}>{count}</span>
+                </button>
+              );
+            })}
+          </div>
+          <p className={styles.toggleMeta}>{disciplineMeta[activeDiscipline]}</p>
         </div>
 
         {/* Project grid */}
         <div className={styles.grid} style={{ perspective: '1000px' }}>
           {filtered.map((project, i) => (
             <TiltCard
-              key={`${project.slug}-${activeFilter}`} // Key includes filter to force re-mount if needed
+              key={`${project.slug}-${activeDiscipline}`} // Key includes discipline to force re-mount
               className={`${styles.card} ${styles.animate} ${
                 project.featured ? styles.cardFeatured : ''
               }`}

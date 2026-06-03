@@ -3,6 +3,8 @@ export interface Project {
   title: string;
   tagline: string;
   category: string;
+  /** Top-level audience grouping so recruiters can self-select. */
+  discipline: Discipline;
   tags: string[];
   year: number;
   role: string;
@@ -13,16 +15,9 @@ export interface Project {
   link?: string;
 }
 
-export const categories = [
-  'All',
-  'Motion Graphics',
-  '3D Animation',
-  'Web Development',
-  'GLB Tools',
-  'Social Media',
-] as const;
+export const disciplines = ['Developer', 'Designer'] as const;
 
-export type Category = (typeof categories)[number];
+export type Discipline = (typeof disciplines)[number];
 
 export const projects: Project[] = [
   {
@@ -30,6 +25,7 @@ export const projects: Project[] = [
     title: 'Scarlett 2i2 — 3D Landing',
     tagline: 'Studio sound, rendered in real time.',
     category: 'Web Development',
+    discipline: 'Developer',
     tags: ['Web Development', 'Three.js', '3D Animation'],
     year: 2025,
     role: 'Creative Developer',
@@ -44,6 +40,7 @@ export const projects: Project[] = [
     title: 'Pin-Pun Pizzeria',
     tagline: 'Authentic flavors, digital speed.',
     category: 'Web Development',
+    discipline: 'Developer',
     tags: ['Web Development', 'React'],
     year: 2024,
     role: 'Front-End Developer',
@@ -58,6 +55,7 @@ export const projects: Project[] = [
     title: 'La Ganadera',
     tagline: 'Artisan deli, crafted online.',
     category: 'Web Development',
+    discipline: 'Developer',
     tags: ['Web Development', 'Landing Page'],
     year: 2025,
     role: 'Front-End Developer',
@@ -72,6 +70,7 @@ export const projects: Project[] = [
     title: 'SABINOS Barberia',
     tagline: 'Precision in style, digital presence.',
     category: 'Web Development',
+    discipline: 'Developer',
     tags: ['Web Development', 'Landing Page'],
     year: 2024,
     role: 'Creative Developer',
@@ -86,6 +85,7 @@ export const projects: Project[] = [
     title: 'Motion Graphics',
     tagline: 'Visual stories in motion.',
     category: 'Motion Graphics',
+    discipline: 'Designer',
     tags: ['Motion Graphics', 'Adobe Portfolio'],
     year: 2024,
     role: 'Motion Designer',
@@ -100,6 +100,7 @@ export const projects: Project[] = [
     title: '3D Design & Animation',
     tagline: 'Dimensions of creativity.',
     category: '3D Animation',
+    discipline: 'Designer',
     tags: ['3D Animation', 'Design'],
     year: 2024,
     role: '3D Artist',
@@ -114,6 +115,7 @@ export const projects: Project[] = [
     title: 'Online GLB Viewer',
     tagline: 'Where code meets art.',
     category: 'GLB Tools',
+    discipline: 'Developer',
     tags: ['Creative Tools', 'Three.js'],
     year: 2024,
     role: 'Creative Technologist',
@@ -128,6 +130,7 @@ export const projects: Project[] = [
     title: 'Design Portfolio',
     tagline: 'The complete visual archive.',
     category: 'Social Media',
+    discipline: 'Designer',
     tags: ['Design', 'Social Media'],
     year: 2024,
     role: 'Multimedia Designer',
