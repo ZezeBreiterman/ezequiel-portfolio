@@ -20,8 +20,15 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
+// Resolve the canonical origin: Vercel's production URL in prod, localhost in dev.
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'http://localhost:3000';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ezequiel-breiterman.vercel.app'),
+  metadataBase: new URL(siteUrl),
   title: 'Ezequiel Breiterman — Motion Designer, Creative Developer & Technologist',
   description:
     'Buenos Aires-based creative technologist combining motion graphics, video editing, 3D animation, web development, and AI-powered workflows to craft visual experiences that resonate.',
