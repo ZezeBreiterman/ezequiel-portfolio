@@ -88,7 +88,7 @@ export default function Works() {
               key={`${project.slug}-${activeFilter}`} // Key includes filter to force re-mount if needed
               className={`${styles.card} ${styles.animate} ${
                 project.featured ? styles.cardFeatured : ''
-              } ${i === 0 && activeFilter === 'All' ? styles.cardLead : ''}`}
+              }`}
               style={{
                 transitionDelay: `${i * 0.05}s`,
                 '--project-color': project.color,

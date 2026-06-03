@@ -119,69 +119,6 @@
   /* all cards equal — no span 2 */
 }
 
-/* Lead / spotlight card — the strongest project, full width, cinematic */
-.cardLead {
-  grid-column: 1 / -1;
-  flex-direction: row;
-  align-items: stretch;
-}
-
-.cardLead::before {
-  content: 'FEATURED';
-  position: absolute;
-  top: var(--space-lg);
-  left: var(--space-lg);
-  z-index: 12;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  font-weight: 700;
-  color: var(--color-bg);
-  background: var(--color-accent-amber);
-  padding: 5px 12px;
-  border-radius: var(--radius-full);
-  box-shadow: var(--glow-amber);
-}
-
-.cardLead .cardMedia {
-  flex: 1 1 60%;
-  aspect-ratio: auto;
-  min-height: 420px;
-}
-
-.cardLead .cardInfo {
-  flex: 1 1 40%;
-  justify-content: center;
-  padding: var(--space-3xl);
-  gap: var(--space-sm);
-}
-
-.cardLead .cardTitle {
-  font-size: var(--fs-2xl);
-}
-
-.cardLead .cardTagline {
-  font-size: var(--fs-base);
-  flex: 0;
-  margin-bottom: var(--space-lg);
-}
-
-@media (max-width: 968px) {
-  .cardLead {
-    flex-direction: column;
-  }
-
-  .cardLead .cardMedia {
-    flex: none;
-    aspect-ratio: 16/9;
-    min-height: 0;
-  }
-
-  .cardLead .cardInfo {
-    padding: var(--space-xl);
-  }
-}
-
 .card:hover {
   border-color: rgba(255, 255, 255, 0.15);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
