@@ -85,6 +85,20 @@
   --grain-opacity: 0.035;
 }
 
+/* ---------- MODE THEMES ----------
+   The primary accent token is repurposed per mode so the whole page
+   (labels, headings highlights, buttons, marquee, selection…) re-themes
+   in one switch. The swap happens behind the full-screen curtain wipe. */
+html[data-mode='developer'] {
+  --color-accent-amber: #00E5FF;
+  --glow-amber: 0 0 40px rgba(0, 229, 255, 0.18);
+}
+
+html[data-mode='creative'] {
+  --color-accent-amber: #F5A623;
+  --glow-amber: 0 0 40px rgba(245, 166, 35, 0.15);
+}
+
 /* ---------- RESET ---------- */
 *,
 *::before,

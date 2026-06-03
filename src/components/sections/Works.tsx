@@ -1,22 +1,29 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { projects, disciplines, type Discipline } from '@/data/projects';
+import { useEffect, useRef } from 'react';
+import { projects, type Discipline } from '@/data/projects';
+import { useMode, type Mode } from '@/components/providers/ModeProvider';
 import TiltCard from '@/components/ui/TiltCard';
 import ScrambleText from '@/components/ui/ScrambleText';
 import styles from './Works.module.css';
 
-// Short blurb shown under the active tab so recruiters know what they're looking at.
+// Short blurb shown under the active discipline so recruiters know what they're looking at.
 const disciplineMeta: Record<Discipline, string> = {
   Developer: 'Web apps, 3D / WebGL experiences & creative coding.',
   Designer: 'Motion graphics, 3D animation & visual design.',
 };
 
+const modeToDiscipline: Record<Mode, Discipline> = {
+  developer: 'Developer',
+  creative: 'Designer',
+};
+
 export default function Works() {
-  const [activeDiscipline, setActiveDiscipline] = useState<Discipline>('Developer');
+  const { mode } = useMode();
+  const activeDiscipline = modeToDiscipline[mode];
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Two clear audiences: Developer vs Designer work.
+  // Driven by the global Developer/Creative lens chosen after the hero.
   const filtered = projects.filter((p) => p.discipline === activeDiscipline);
 
   // Fix: Re-run IntersectionObserver whenever the filter changes
@@ -65,29 +72,18 @@ export default function Works() {
           </h2>
         </div>
 
-        {/* Discipline toggle — let recruiters jump straight to what they need */}
-        <div className={`${styles.toggleWrap} ${styles.animate}`}>
-          <div className={styles.toggle} role="tablist" aria-label="Filter work by discipline">
-            {disciplines.map((d) => {
-              const count = projects.filter((p) => p.discipline === d).length;
-              return (
-                <button
-                  key={d}
-                  role="tab"
-                  aria-selected={activeDiscipline === d}
-                  className={`${styles.toggleBtn} ${
-                    activeDiscipline === d ? styles.toggleActive : ''
-                  }`}
-                  onClick={() => setActiveDiscipline(d)}
-                  data-cursor="hover"
-                >
-                  {d}
-                  <span className={styles.toggleCount}>{count}</span>
-                </button>
-              );
-            })}
-          </div>
-          <p className={styles.toggleMeta}>{disciplineMeta[activeDiscipline]}</p>
+        {/* Synced with the global lens chosen after the hero */}
+        <div className={`${styles.lensBar} ${styles.animate}`}>
+          <span className={styles.lensDot} />
+          <span className={styles.lensText}>
+            Showing <strong>{activeDiscipline}</strong> work — {disciplineMeta[activeDiscipline]}
+          </span>
+          <a href="#lens" className={styles.lensSwitch} data-cursor="hover">
+            Switch lens
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg>
+          </a>
         </div>
 
         {/* Project grid */}

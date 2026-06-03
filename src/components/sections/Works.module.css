@@ -18,78 +18,61 @@
   transform: translateY(0);
 }
 
-/* Discipline toggle (Developer / Designer) */
-.toggleWrap {
+/* Lens indicator — reflects the global Developer/Creative mode */
+.lensBar {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-md);
+  justify-content: center;
   margin-bottom: var(--space-3xl);
-}
-
-.toggle {
-  display: inline-flex;
-  gap: 4px;
-  padding: 6px;
+  padding: 0.8em 1.4em;
+  max-width: max-content;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--color-border);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
-.toggleBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6em;
-  padding: 0.7em 1.8em;
-  border-radius: var(--radius-full);
-  font-family: var(--font-body);
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--color-text-muted);
-  background: transparent;
-  cursor: pointer;
-  transition: color 0.3s ease, background 0.4s var(--ease-out-expo);
-  white-space: nowrap;
+.lensDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent-amber);
+  box-shadow: var(--glow-amber);
+  flex-shrink: 0;
 }
 
-.toggleBtn:hover {
-  color: var(--color-text);
-}
-
-.toggleActive {
-  background: var(--color-text);
-  color: var(--color-bg);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-}
-
-.toggleCount {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.5em;
-  height: 1.5em;
-  padding: 0 0.4em;
-  border-radius: var(--radius-full);
-  font-family: var(--font-mono);
-  font-size: 0.7em;
-  font-weight: 700;
-  background: rgba(255, 255, 255, 0.12);
-  color: inherit;
-}
-
-.toggleActive .toggleCount {
-  background: rgba(8, 8, 16, 0.15);
-}
-
-.toggleMeta {
+.lensText {
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   color: var(--color-text-muted);
-  text-align: center;
+}
+
+.lensText strong {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.lensSwitch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-amber);
+  transition: opacity 0.3s ease;
+}
+
+.lensSwitch:hover {
+  opacity: 0.7;
 }
 
 .sectionLabel {

@@ -7,6 +7,7 @@ import CustomCursor from '@/components/ui/CustomCursor';
 import SmoothScroll from '@/components/ui/SmoothScroll';
 import GlobalBackground from '@/components/layout/GlobalBackground';
 import Preloader from '@/components/ui/Preloader';
+import ModeProvider from '@/components/providers/ModeProvider';
 
 const inter = Inter({
   variable: '--font-body',
@@ -77,16 +78,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      data-mode="developer"
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
+    >
       <body className="antialiased">
         <Preloader />
-        <SmoothScroll>
-          <GlobalBackground />
-          <CustomCursor />
-          <Nav />
-          <main>{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <ModeProvider>
+          <SmoothScroll>
+            <GlobalBackground />
+            <CustomCursor />
+            <Nav />
+            <main>{children}</main>
+            <Footer />
+          </SmoothScroll>
+        </ModeProvider>
       </body>
     </html>
   );

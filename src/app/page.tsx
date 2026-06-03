@@ -1,6 +1,7 @@
 'use client';
 
 import Hero from '@/components/sections/Hero';
+import ModeSwitch from '@/components/sections/ModeSwitch';
 import About from '@/components/sections/About';
 import Skills from '@/components/sections/Skills';
 import Works from '@/components/sections/Works';
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <ModeSwitch />
       <Marquee />
       <About />
       <Works />
