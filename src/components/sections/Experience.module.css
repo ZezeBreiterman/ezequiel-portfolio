@@ -1,0 +1,177 @@
+.experience {
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animate */
+.animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-out-expo),
+              transform 0.8s var(--ease-out-expo);
+}
+
+.animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.sectionLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.labelLine {
+  width: 40px;
+  height: 1px;
+  background: var(--color-accent-amber);
+}
+
+.labelText {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.heading {
+  font-size: var(--fs-2xl);
+  margin-bottom: var(--space-md);
+}
+
+.subheading {
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  padding-left: 40px;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent-amber),
+    var(--color-accent-cyan),
+    var(--color-accent-rose),
+    var(--color-accent-purple)
+  );
+  opacity: 0.3;
+}
+
+/* Timeline item */
+.timelineItem {
+  position: relative;
+  padding-bottom: var(--space-2xl);
+}
+
+.timelineItem:last-child {
+  padding-bottom: 0;
+}
+
+/* Dot */
+.timelineDot {
+  position: absolute;
+  left: -34px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+/* Card */
+.timelineCard {
+  padding: var(--space-xl);
+  transition: border-color 0.3s ease, transform 0.3s var(--ease-out-expo);
+}
+
+.timelineCard:hover {
+  border-color: var(--color-border-hover);
+  transform: translateX(4px);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+}
+
+.period {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.company {
+  font-size: var(--fs-xs);
+  color: var(--color-text-subtle);
+  font-weight: 500;
+}
+
+.jobTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.description {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+}
+
+/* Skill tags */
+.skillTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.skillTag {
+  padding: 0.25em 0.6em;
+  font-size: 0.7rem;
+  color: var(--color-text-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline {
+    padding-left: 30px;
+  }
+
+  .timelineDot {
+    left: -25px;
+    width: 10px;
+    height: 10px;
+  }
+}

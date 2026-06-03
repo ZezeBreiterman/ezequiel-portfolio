@@ -1,0 +1,55 @@
+.footer {
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-xl) 0;
+  background: var(--color-bg);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.logoDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent-amber);
+}
+
+.copy {
+  font-size: var(--fs-xs);
+  color: var(--color-text-subtle);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.location {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-text-subtle);
+}
+
+@media (max-width: 768px) {
+  .inner {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+  }
+}
